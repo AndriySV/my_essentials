@@ -1,4 +1,4 @@
-package tutorial;
+package tutorial.model;
 
 import java.util.List;
 

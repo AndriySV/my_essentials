@@ -1,4 +1,4 @@
-package tutorial;
+package tutorial.model;
 
 public class Car {
 
