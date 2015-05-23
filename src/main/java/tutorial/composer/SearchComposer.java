@@ -17,7 +17,7 @@ import tutorial.model.CarService;
 import tutorial.model.CarServiceImpl;
 
 @SuppressWarnings("serial")
-public class SearchController extends SelectorComposer<Component> {
+public class SearchComposer extends SelectorComposer<Component> {
 
 	@Wire
 	private Textbox keywordBox;
