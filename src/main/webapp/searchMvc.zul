@@ -1,5 +1,5 @@
 <window title="Search" border="normal"
-	apply="tutorial.composer.SearchController" vflex="1" >
+	apply="tutorial.composer.SearchComposer" vflex="1" >
 
 	<hbox align="center" width="100%" pack="end">
 		Keyword:
