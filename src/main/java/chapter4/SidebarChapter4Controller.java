@@ -8,6 +8,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.SerializableEventListener;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Column;
 import org.zkoss.zul.Columns;
 import org.zkoss.zul.Grid;
@@ -26,9 +27,6 @@ public class SidebarChapter4Controller extends SelectorComposer<Component> {
 	@Wire
 	Grid fnList;
 	
-	/*@Wire
-	Grid newGrid;
-*/
 	@Wire
 	Vbox mainBox;
 	
@@ -47,9 +45,29 @@ public class SidebarChapter4Controller extends SelectorComposer<Component> {
 			rows.appendChild(row);
 		}
 		
-		createNewGrid();
+		createButton();
+		
+//		createNewGrid();
 	}
 	
+	private void createButton() {
+
+		final Button button = new Button("Show Table");
+		button.setId("buttonShow");
+		mainBox.appendChild(button);
+		
+		EventListener<Event> buttonAction = new EventListener<Event>() {
+			@Override
+			public void onEvent(Event event) throws Exception {
+				createNewGrid();
+				
+				button.setLabel("Done !!!");
+			}
+		};
+		
+		button.addEventListener(Events.ON_CLICK, buttonAction);
+	}
+
 	private void createNewGrid() {
 		Grid newGrid = new Grid();
 		
