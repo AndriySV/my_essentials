@@ -1,0 +1,15 @@
+<window vflex="1" hflex="1" border="normal"
+	style="background-color: pink"
+	apply="chapter4.SidebarChapter4Controller">
+
+	<vbox align="center" hflex="1" id="mainBox">
+		<grid sclass="sidebar" id="fnList" width="250px">
+			<columns>
+				<column width="36px" />
+				<column />
+			</columns>
+			<rows />
+		</grid>
+		
+	</vbox>
+</window>
