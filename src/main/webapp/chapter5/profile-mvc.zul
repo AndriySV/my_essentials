@@ -50,6 +50,16 @@
 					</cell>
 				</row>
 				<row>
+					<cell sclass="row-title">Language :</cell>
+					<cell>
+						<listbox id="language" mold="select" width="200px"> 
+							<template name="model">
+								<listitem label="${each}" />
+							</template>
+						</listbox>
+					</cell>
+				</row>
+				<row>
 					<cell sclass="row-title">Bio :</cell>
 					<cell>
 						<textbox id="bio" multiline="true" hflex="1"
