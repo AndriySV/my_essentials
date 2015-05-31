@@ -2,26 +2,31 @@
 	apply="chapter6.mvc.GridCheckboxController">
 	<vbox vflex="1" hflex="1" align="center" pack="center">
 		<vbox style="background-color: #C3FFB0;">
-			
-			<grid>
+
+			<grid id="gridPerson" width="300px" mold="paging" pageSize="3">
 				<columns>
-					<column label="check" />
-					<column label="Name"/>
+					<column hflex="min">
+						<checkbox id="selectedAllCheckBox" label="Select All"/>
+					</column>
+					<column label="Name" />
 					<column label="Age" />
 				</columns>
 				<rows>
-					<row>
-						<cell>
-							<checkbox />
-						</cell>
-						
-						<cell />
-						
-						<cell />
-					</row>
+					<template name="model">
+						<row>
+							<cell>
+								<checkbox />
+							</cell>
+							<cell align="center" valign="middle">
+								<label value="${each.name}" />
+							</cell>
+							<cell align="center" valign="middle">
+								<label value="${each.age}" />
+							</cell>
+						</row>
+					</template>	
 				</rows>
-			
-			
+
 			</grid>
 
 
