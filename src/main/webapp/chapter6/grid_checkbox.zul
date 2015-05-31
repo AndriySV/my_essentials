@@ -1,0 +1,30 @@
+<window title="Grid_Checkbox" border="normal" width="50%" height="50%"
+	apply="chapter6.mvc.GridCheckboxController">
+	<vbox vflex="1" hflex="1" align="center" pack="center">
+		<vbox style="background-color: #C3FFB0;">
+			
+			<grid>
+				<columns>
+					<column label="check" />
+					<column label="Name"/>
+					<column label="Age" />
+				</columns>
+				<rows>
+					<row>
+						<cell>
+							<checkbox />
+						</cell>
+						
+						<cell />
+						
+						<cell />
+					</row>
+				</rows>
+			
+			
+			</grid>
+
+
+		</vbox>
+	</vbox>
+</window>
