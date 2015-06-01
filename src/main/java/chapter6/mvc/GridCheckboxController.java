@@ -47,10 +47,14 @@ public class GridCheckboxController extends SelectorComposer<Component> {
 
 		if (checkEvent.isChecked()) {
 
-			List rowList = gridPerson.getRows().getChildren();
-			for (Object obj : rowList) {
-				Row row = (Row) obj;
+			List<Row> rowList = gridPerson.getRows().getChildren();
+			
+			for (Row row : rowList) {
+				
+
 				Cell cell = (Cell) row.getChildren().get(0);
+				
+				
 				Checkbox checkbox = (Checkbox) cell.getChildren().get(0);
 				checkbox.setChecked(checkEvent.isChecked());
 
