@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.CheckEvent;
+import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -43,18 +44,14 @@ public class GridCheckboxController extends SelectorComposer<Component> {
 	boolean isCheck = false;
 
 	@Listen("onCheck = #selectedAllCheckBox")
-	public void onCheck$selectedAllCheckBox(CheckEvent checkEvent) {
+	public void selectedAllCheckBox(CheckEvent checkEvent) {
 
 		if (checkEvent.isChecked()) {
 
 			List<Row> rowList = gridPerson.getRows().getChildren();
 			
 			for (Row row : rowList) {
-				
-
 				Cell cell = (Cell) row.getChildren().get(0);
-				
-				
 				Checkbox checkbox = (Checkbox) cell.getChildren().get(0);
 				checkbox.setChecked(checkEvent.isChecked());
 
@@ -68,9 +65,8 @@ public class GridCheckboxController extends SelectorComposer<Component> {
 			}
 		} else {
 
-			List rowList = gridPerson.getRows().getChildren();
-			for (Object obj : rowList) {
-				Row row = (Row) obj;
+			List<Row> rowList = gridPerson.getRows().getChildren();
+			for (Row row : rowList) {
 				Cell cell = (Cell) row.getChildren().get(0);
 				Checkbox checkbox = (Checkbox) cell.getChildren().get(0);
 				checkbox.setChecked(checkEvent.isChecked());
@@ -86,8 +82,69 @@ public class GridCheckboxController extends SelectorComposer<Component> {
 		}
 	}
 
-	private void lineThrough(CheckEvent checkEvent) {
+	Label name1 = null;
+	Label age1 = null;
+	
+	@Listen("onPersonCheck = #gridPerson")
+	public void selectedCheckbox(ForwardEvent forwardEvent) {
 
+		Checkbox checkbox = (Checkbox) forwardEvent.getOrigin().getTarget();
+		Row row = (Row) checkbox.getParent().getParent();
+		Label name = (Label) row.getChildren().get(1).getChildren().get(0);
+		Label age = (Label) row.getChildren().get(2).getChildren().get(0);
+		
+		if (checkbox.isChecked() && isCheckedRows()) {
+
+			name.setStyle("text-decoration: line-through;");
+			age.setStyle("text-decoration: line-through;");
+			
+			name1 = name;
+			age1 = age;
+		} else{
+			name.setStyle("");
+			age.setStyle("");
+			
+			if (name1 != null && age1 != null) {
+				name1.setStyle("");
+				age1.setStyle("");
+			}
+		}
+	}
+	
+	private boolean isCheckedRows() {
+		int countCheckedCheckbox = 0;
+		boolean isCheckedRows = false;
+		Checkbox checkbox1 = null;
+		
+		List<Row> rowList = gridPerson.getRows().getChildren();
+		for (Row row : rowList) {
+			Cell cell = (Cell) row.getChildren().get(0);
+			Checkbox checkbox = (Checkbox) cell.getChildren().get(0);
+			
+			if (checkbox.isChecked()) {
+				countCheckedCheckbox++;
+				 if (countCheckedCheckbox == 2 && checkbox1 != null) {
+					 
+					Row row1 = (Row) checkbox1.getParent().getParent();
+					Label name = (Label) row1.getChildren().get(1).getChildren().get(0);
+					Label age = (Label) row1.getChildren().get(2).getChildren().get(0);
+					name.setStyle("text-decoration: line-through;");
+					age.setStyle("text-decoration: line-through;"); 
+					
+					isCheckedRows = true;
+					return isCheckedRows;
+				}
+				 checkbox1 = checkbox; 
+			}
+		}
+		
+		/*Row row1 = (Row) checkbox1.getParent().getParent();
+		Label name = (Label) row1.getChildren().get(1).getChildren().get(0);
+		Label age = (Label) row1.getChildren().get(2).getChildren().get(0);
+		name.setStyle("");
+		age.setStyle(""); */
+		
+		return isCheckedRows;
 	}
 
 }
