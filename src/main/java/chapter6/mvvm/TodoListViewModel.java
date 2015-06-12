@@ -127,7 +127,8 @@ public class TodoListViewModel {
 	}
 	
 	//when user clicks the update button
-	@Command @NotifyChange("selectedTodo")
+	@Command 
+	@NotifyChange("selectedTodo")
 	public void reloadTodo(){
 		//do nothing, the selectedTodo will reload by notify change
 	}
